@@ -28,5 +28,3 @@ val2 = DeepDiff(nested1, nested2).pretty()
 t1 = {1:1, 2:2, 3:3, 4:{"a":"hello", "b":[1, 2, 3]}}
 t2 = {1:1, 2:2, 3:3, 4:{"a":"hello", "b":[1, 3, 2, 3]}}
 ddiff = DeepDiff(same_diff_order1, same_diff_order2)
-
-print(ddiff)
