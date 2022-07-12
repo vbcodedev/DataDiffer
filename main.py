@@ -50,9 +50,9 @@ def data_compare(source_uri, target_uri, db1, db2, coll1, coll2, percent, direct
         if direction == "forwards" or direction == "backwards":
             if queried_doc == None: 
                 if direction == "forwards":
-                    str = "\n\n****Failed!****\nThe following document based on it's ID was not found in the target but was found in the source:\n{0}\n"
+                    str = "\n\n❌❌❌❌Failed!❌❌❌❌\nThe following document based on it's ID was not found in the target but was found in the source:\n{0}\n"
                 if direction == "backwards":
-                    str = "\n\n****Failed!****\nThe following document based on it's ID was not found in the source but was found in the target:\n{0}\n"
+                    str = "\n\n❌❌❌❌Failed!❌❌❌❌\nThe following document based on it's ID was not found in the source but was found in the target:\n{0}\n"
                 print(str.format(document))
                 sys.exit[0]
                 return False
@@ -81,20 +81,20 @@ def data_compare(source_uri, target_uri, db1, db2, coll1, coll2, percent, direct
                 #     3) there is a difference with the dump strings, but the length is anything else but 0, so we know there are actual differences, so we print to user and return False.
                 diff = DeepDiff(document, queried_doc, verbose_level=2, report_repetition=True).pretty()
                 if len(diff) == 0:
-                    str = "\n\n****Failed!****\nThe values are all there but the order of values is different from source to target.\nSource document looks like this:\n{0}\nTarget document looks like this:\n{1}\n\n"
+                    str = "\n\n❌❌❌❌Failed!❌❌❌❌\nThe values are all there but the order of values is different from source to target.\nSource document looks like this:\n{0}\nTarget document looks like this:\n{1}\n\n"
                     print(str.format(pretty_document_str, pretty_q_doc_str))
                     sys.exit[0]
                     return False
                 else:
-                    diff_str = "\n\n****Failed!****\nThere are differences that were found. Refer to the target doc as seen here:\n{0}\nRefer to the source doc as seen here:\n{1}\nThe Differences Consist Specifically of the Following:\n{2}\n\n"
+                    diff_str = "\n\n❌❌❌❌Failed!❌❌❌❌\nThere are differences that were found. Refer to the target doc as seen here:\n{0}\nRefer to the source doc as seen here:\n{1}\nThe Differences Consist Specifically of the Following:\n{2}\n\n"
                     print(diff_str.format(pretty_document_str, pretty_q_doc_str, diff))
                     sys.exit[0]
                     return False
         else:
             sys.exit[0]
     if direction == "backwards":
-        print("\n****PASSED!**** \n1) ✅  All documents in source collection exist in target collection!\n2) ✅  All documents in target collection exist in source!\n" 
-                "3) ✅  All randomly sampled documents based on your defined percentage match exactly from source to target!\n\n")
+        print("\n✅✅✅✅PASSED!✅✅✅✅\n1) ✔️  All documents in source collection exist in target collection!\n2) ✔️  All documents in target collection exist in source!\n" 
+                "3) ✔️  All randomly sampled documents based on your defined percentage match exactly from source to target!\n\n")
         return True
 
 def get_rand_sample_docs(sample_coll, percent):
@@ -113,18 +113,21 @@ def empty_coll_or_diff_num_docs_check(first_coll, second_coll):
 
     #Checks if first collection is empty
     if coll1_num_docs == 0: 
-        print("Your first collection is empty, please re-check you selected the right source collection.")
+        print("\n\n❌❌❌❌Failed!❌❌❌❌\nYour first collection is empty, please re-check you selected the right source collection.")
+        sys.exit[0]
         return False
     
     #Checks if second collection is empty 
     if coll2_num_docs == 0:
-        print("Your second collection is empty, please re-check you selected the right target collection.")
+        print("\n\n❌❌❌❌Failed!❌❌❌❌\nYour second collection is empty, please re-check you selected the right target collection.")
+        sys.exit[0]
         return False
 
     #Checks to see if number of documents in both are equal
     if coll1_num_docs != coll2_num_docs:
-        str = "Both collections do not have the same number of documents. Source collection has {0} documents. Target collection has {1} documents." 
+        str = "\n\n❌❌❌❌Failed!❌❌❌❌\nBoth collections do not have the same number of documents. Source collection has {0} documents. Target collection has {1} documents." 
         print(str.format(coll1_num_docs, coll2_num_docs))
+        sys.exit[0]
         return False
 
 #Main method
@@ -151,4 +154,4 @@ try:
     data_compare(args.source_uri, args.target_uri, src_str[0], target_str[0], src_str[1], target_str[1], args.percent, "forwardsAgain")
     data_compare(args.source_uri, args.target_uri, src_str[0], target_str[0], src_str[1], target_str[1], 100, "backwards")
 except: 
-    print("\n\n****Unable to run fully.**** Please fix any errors presented and make sure your command line arguments are entered correctly. For help on correct command line arguments syntax, pass --help as a command line argument for more help.\n\n")
+    print("\n\n❌❌❌❌Unable to run fully!❌❌❌❌\nPlease fix any errors presented and make sure your command line arguments are entered correctly. For help on correct command line arguments syntax, pass --help as a command line argument for more help.\n\n")

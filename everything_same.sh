@@ -1,4 +1,21 @@
 #!/bin/bash
-mongo < everything_same.js
-python3 main.py --source-uri "mongodb://localhost:27017" --target-uri "mongodb://localhost:27017" --source-namespace "dataDiffer_1.source" --target-namespace "dataDiffer_2.target" --percent 100
-mongo < everything_same_drop.js
+export myDB=$SOURCE_DB
+export myColl=$SOURCE_COLL
+mongo $SOURCE_URI everything_same.js
+
+export myDB=$TARGET_DB
+export myColl=$TARGET_COLL
+mongo $TARGET_URI everything_same.js
+
+python3 main.py --source-uri $SOURCE_URI --target-uri $TARGET_URI --source-namespace "$SOURCE_DB.$SOURCE_COLL" --target-namespace "$TARGET_DB.$TARGET_COLL" --percent 100
+
+export myDB=$SOURCE_DB
+export myColl=$SOURCE_COLL
+mongo $SOURCE_URI everything_same_drop.js
+
+export myDB=$TARGET_DB
+export myColl=$TARGET_COLL
+mongo $TARGET_URI everything_same_drop.js
+
+# mongo < everything_same.js
+#mongo < everything_same_drop.js
