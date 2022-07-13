@@ -11,11 +11,8 @@ python3 main.py --source-uri $SOURCE_URI --target-uri $TARGET_URI --source-names
 
 export myDB=$SOURCE_DB
 export myColl=$SOURCE_COLL
-mongo $SOURCE_URI everything_same_drop.js
+mongo $SOURCE_URI drop_coll.js
 
 export myDB=$TARGET_DB
 export myColl=$TARGET_COLL
-mongo $TARGET_URI everything_same_drop.js
-
-# mongo < everything_same.js
-#mongo < everything_same_drop.js
+mongo $TARGET_URI drop_coll.js

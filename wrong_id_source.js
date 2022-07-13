@@ -1,5 +1,5 @@
-//For adding the everything_same test documents to both source collection and target collection, as this is called from both of those collections. 
-//Everything is the exact same in both databses (for a perfect case) 
+//For adding the wrong_id test documents in the source collection.
+//The id of Susan in target is 10.0 when in source it is 3.0. Everything else is the same. 
 const mydb =_getEnv('myDB')
 const coll = _getEnv('myColl')
 db1 = new Mongo().getDB(mydb)

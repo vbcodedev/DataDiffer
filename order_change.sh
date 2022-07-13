@@ -1,4 +1,18 @@
 #!/bin/bash
-mongo < order_change.js
-python3 main.py --source-uri "mongodb://localhost:27017" --target-uri "mongodb://localhost:27017" --source-namespace "dataDiffer_5.source" --target-namespace "dataDiffer_6.target" --percent 100
-mongo < order_change_drop.js
+export myDB=$SOURCE_DB
+export myColl=$SOURCE_COLL
+mongo $SOURCE_URI order_change_source.js
+
+export myDB=$TARGET_DB
+export myColl=$TARGET_COLL
+mongo $TARGET_URI order_change_target.js
+
+python3 main.py --source-uri $SOURCE_URI --target-uri $TARGET_URI --source-namespace "$SOURCE_DB.$SOURCE_COLL" --target-namespace "$TARGET_DB.$TARGET_COLL" --percent 100
+
+export myDB=$SOURCE_DB
+export myColl=$SOURCE_COLL
+mongo $SOURCE_URI drop_coll.js
+
+export myDB=$TARGET_DB
+export myColl=$TARGET_COLL
+mongo $TARGET_URI drop_coll.js
