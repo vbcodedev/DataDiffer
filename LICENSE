@@ -1,3 +1,5 @@
+TQDM PACKAGE LICENSING: 
+
 `tqdm` is a product of collaborative work.
 Unless otherwise stated, all authors (see commit logs) retain copyright
 for their respective work, and release the work under the MIT licence
@@ -51,6 +53,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
+
+
+
+
+DeepDiff PACKAGE LICENSING:
 
 The MIT License (MIT)
 
