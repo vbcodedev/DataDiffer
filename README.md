@@ -1,5 +1,5 @@
 # DataDiffer Overview
-DataDiffer will compare a user defined percentage of random documents between two MongoDB/DocumentDB servers for a single collection in each. 
+DataDiffer will compare a user-defined percentage of random documents between two MongoDB/DocumentDB servers for a single collection in each. 
 
 ## Prerequisites that Must be Met for Running DataDiffer
 1. Install pymongo, deepdiff, and tqdm software packages by running the following commands in the command line: 
