@@ -21,3 +21,5 @@
     bash <test-script-name-here>.sh
 ```
 5. See the output in the command line!
+
+Note: For each additional test script you want to run, make sure you cd back into test-scripts, source the appropriate environment file and run the appropriate test script as done above. 
