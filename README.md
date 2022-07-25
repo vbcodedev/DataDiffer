@@ -1,9 +1,19 @@
-## To Run DataDiffer Test Scripts
-1. Assuming you have the prerequsities met from the general README, CD into test-scripts folder in the command line with the following command: 
+# DataDiffer Overview
+DataDiffer will compare a user-defined percentage of random documents between two MongoDB/DocumentDB servers for a single collection in each. 
+
+## Prerequisites that Must be Met for Running DataDiffer
+1. Install pymongo, deepdiff, and tqdm software packages by running the following commands in the command line: 
 ```
-    cd test-scripts
+    pip install pymongo
+    pip install deepdiff
+    pip install tqdm
 ```
-2. Create an envrionment file(s) as needed based on your migration needs. The environment file should set environment variables and look something like this with each variable filled out for your use case:
+2. Clone the repo to your machine where you want to run DataDiffer.
+
+3. CD into DataDiffer
+
+## To Run DataDiffer On Your Own Source/Target Collections
+1. Assuming you have the prerequisites above met, create an envrionment file(s) as needed based on your migration needs. The environment file should set environment variables and look something like this with each variable filled out for your use case:
 ```
     export SOURCE_URI=""
     export SOURCE_DB=""
@@ -12,12 +22,14 @@
     export TARGET_DB=""
     export TARGET_COLL=""
 ```
-3. Source the environment file you built in the command line with a command such as the following: 
+2. Source the environment file you built in the command line with a command such as the following: 
 ```
     source <environment-file-name-here>.sh
 ```
-4. Run the appropriate bash test script in the command line with a command such as the following: 
+3. Run the data-differ.py file in the command line with the proper arguments, such as the following: 
 ```
-    bash <test-script-name-here>.sh
+     python data-differ.py --source-uri $SOURCE_URI --target-uri $TARGET_URI --source-namespace "$SOURCE_DB.$SOURCE_COLL" --target-namespace "$TARGET_DB.$TARGET_COLL" --percent 100
 ```
-5. See the output in the command line!
+Note: You can adjust the percent value as you wish in the command above. 
+
+4. See the ouput in the command line! 
